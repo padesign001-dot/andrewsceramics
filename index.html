@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Handmade porcelain ceramics — wavy bowls, lily sculptures, and Little Monster chess sets.">
+<meta property="og:title" content="Andrew's Ceramics">
+<meta property="og:description" content="Porcelain with nothing to prove.">
+<title>Andrew's Ceramics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF7;
+    --clay: #C4A882;
+    --clay-dark: #9B7F5E;
+    --charcoal: #2A2520;
+    --mid: #6B6258;
+    --light: #B8AFA6;
+    --rule: rgba(42,37,32,0.12);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(253,250,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--charcoal);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--charcoal); }
+
+  .nav-cart {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--charcoal);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: var(--sans);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: var(--charcoal);
+    color: var(--warm-white);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .cart-count.visible { opacity: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 2rem;
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    color: var(--charcoal);
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--clay-dark);
+  }
+
+  .hero-sub {
+    font-size: 0.9rem;
+    color: var(--mid);
+    max-width: 380px;
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--warm-white);
+    background: var(--charcoal);
+    padding: 0.9rem 2.4rem;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--clay-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--charcoal);
+    background: transparent;
+    padding: 0.9rem 2.4rem;
+    border: 0.5px solid var(--charcoal);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.2s;
+    margin-left: 1rem;
+  }
+
+  .btn-outline:hover {
+    background: var(--charcoal);
+    color: var(--warm-white);
+  }
+
+  .hero-image {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--light);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 7rem 4rem; }
+
+  .section-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--charcoal);
+  }
+
+  .section-title em { font-style: italic; color: var(--clay-dark); }
+
+  hr.rule {
+    border: none;
+    border-top: 0.5px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-body {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--mid);
+  }
+
+  .about-body p + p { margin-top: 1.25rem; }
+
+  .about-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .about-stat {
+    border-top: 0.5px solid var(--rule);
+    padding-top: 1.25rem;
+  }
+
+  .about-stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .about-stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .about-image-block {
+    position: relative;
+  }
+
+  .about-image-placeholder {
+    background: var(--warm-white);
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SHOP ── */
+  .shop { background: var(--warm-white); }
+
+  .shop-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .shop-categories {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .cat-btn {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    border: 0.5px solid var(--rule);
+    background: none;
+    color: var(--mid);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.2s;
+  }
+
+  .cat-btn.active, .cat-btn:hover {
+    background: var(--charcoal);
+    color: var(--warm-white);
+    border-color: var(--charcoal);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .product-card {
+    cursor: pointer;
+  }
+
+  .product-image {
+    background: var(--cream);
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.04);
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--charcoal);
+    color: var(--cream);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .product-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    color: var(--charcoal);
+  }
+
+  .product-desc {
+    font-size: 0.78rem;
+    color: var(--light);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-price {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--charcoal);
+  }
+
+  .product-price .sold-out {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .add-btn {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 0.5px solid var(--charcoal);
+    background: none;
+    color: var(--charcoal);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.2s;
+  }
+
+  .add-btn:hover {
+    background: var(--charcoal);
+    color: var(--warm-white);
+  }
+
+  .add-btn:disabled {
+    border-color: var(--light);
+    color: var(--light);
+    cursor: not-allowed;
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+
+  .process .section-eyebrow { color: rgba(196,168,130,0.6); }
+  .process .section-title { color: var(--cream); }
+  .process .section-title em { color: var(--clay); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-top: 5rem;
+  }
+
+  .process-step {
+    border-top: 0.5px solid rgba(255,255,255,0.12);
+    padding-top: 2rem;
+  }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(196,168,130,0.3);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-body {
+    font-size: 0.82rem;
+    color: rgba(196,168,130,0.7);
+    line-height: 1.75;
+  }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--cream); padding: 7rem 4rem; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .gallery-item {
+    background: var(--warm-white);
+    overflow: hidden;
+  }
+
+  .gallery-item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .gallery-item-inner {
+    aspect-ratio: 1;
+    background: var(--warm-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gallery-item:first-child .gallery-item-inner {
+    aspect-ratio: auto;
+    min-height: 400px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-field label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    background: none;
+    border: none;
+    border-bottom: 0.5px solid var(--rule);
+    padding: 0.6rem 0;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    resize: none;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus {
+    border-bottom-color: var(--clay-dark);
+  }
+
+  .form-field textarea { min-height: 100px; }
+
+  .contact-info {
+    padding-top: 1rem;
+  }
+
+  .contact-info p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .social-link::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 0.5px;
+    background: var(--rule);
+    transition: width 0.2s, background 0.2s;
+  }
+
+  .social-link:hover {
+    color: var(--charcoal);
+  }
+
+  .social-link:hover::before {
+    width: 32px;
+    background: var(--charcoal);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 0.5px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--warm-white);
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--light);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--light);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--charcoal); }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42,37,32,0.35);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .cart-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .cart-drawer {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 420px;
+    background: var(--warm-white);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  .cart-drawer.open { transform: translateX(0); }
+
+  .cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .cart-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+
+  .cart-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--mid);
+    font-size: 1.5rem;
+    padding: 0.25rem;
+    line-height: 1;
+  }
+
+  .cart-empty {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .cart-empty-icon {
+    font-size: 2rem;
+    opacity: 0.4;
+  }
+
+  .cart-empty p {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cart-items { flex: 1; }
+
+  .cart-item {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid var(--rule);
+    align-items: start;
+  }
+
+  .cart-item-img {
+    background: var(--cream);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    color: var(--light);
+  }
+
+  .cart-item-name {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  .cart-item-price {
+    font-size: 0.78rem;
+    color: var(--mid);
+  }
+
+  .cart-item-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--light);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0;
+    font-family: var(--sans);
+    transition: color 0.2s;
+  }
+
+  .cart-item-remove:hover { color: var(--charcoal); }
+
+  .cart-footer {
+    padding-top: 1.5rem;
+    border-top: 0.5px solid var(--rule);
+    margin-top: auto;
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
+
+  .cart-total-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .cart-total-price {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 300;
+  }
+
+  .cart-note {
+    font-size: 0.7rem;
+    color: var(--light);
+    text-align: center;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(2rem);
+    background: var(--charcoal);
+    color: var(--cream);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 300;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero-headline { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-ctas { animation-delay: 0.4s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 4rem 1.5rem 3rem; }
+    .hero-image { display: none; }
+
+    .about, .contact { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-stat-grid { grid-template-columns: 1fr 1fr; }
+
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .cart-drawer { width: 100%; }
+
+    .shop-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Andrew's Ceramics</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cart" onclick="openCart()">
+    Bag
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Handmade in Nashville</p>
+    <h1 class="hero-headline">Porcelain with<br><em>nothing to prove.</em></h1>
+    <p class="hero-sub">Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece shaped slowly, one hour at a time.</p>
+    <div class="hero-ctas">
+      <a href="#shop" class="btn-primary">Shop the collection</a>
+      <a href="#about" class="btn-outline">The work</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-image-placeholder">
+      <!-- Replace with: <img src="hero.jpg" alt="Wavy porcelain bowl"> -->
+      Add hero image
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <p class="section-eyebrow">Somewhere between control and collapse</p>
+    <h2 class="section-title">Made by hand.<br><em>Left to decide.</em></h2>
+    <div class="about-body" style="margin-top: 2rem;">
+      <p>I make porcelain by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.</p>
+      <p>Each piece takes 15–20 hours to coax into shape: forming, refining, firing, and simply waiting for the clay to settle into what it wants to be.</p>
+      <p>The work happens at a community studio in Nashville. It's quiet, unhurried, and honest.</p>
+    </div>
+    <div class="about-stat-grid">
+      <div class="about-stat">
+        <div class="about-stat-num">15–20</div>
+        <div class="about-stat-label">Hours per piece</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">3</div>
+        <div class="about-stat-label">Collections</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">2 yrs</div>
+        <div class="about-stat-label">In the studio</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">1</div>
+        <div class="about-stat-label">Maker</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-image-block">
+    <div class="about-image-placeholder">
+      <!-- Replace with: <img src="about.jpg" alt="Studio process"> -->
+      Add studio photo
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- SHOP -->
+<section class="shop" id="shop">
+  <div class="shop-header">
+    <div>
+      <p class="section-eyebrow">Available now</p>
+      <h2 class="section-title">The <em>collection</em></h2>
+    </div>
+    <p style="font-size:0.78rem; color: var(--light); max-width: 260px; text-align: right; line-height: 1.65;">Each piece is one of a kind. Once it's gone, it's gone. Commissions welcome.</p>
+  </div>
+
+  <div class="shop-categories">
+    <button class="cat-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="cat-btn" onclick="filterProducts('bowls', this)">Wavy Bowls</button>
+    <button class="cat-btn" onclick="filterProducts('sculptures', this)">Lily Sculptures</button>
+    <button class="cat-btn" onclick="filterProducts('chess', this)">Chess Sets</button>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <p class="section-eyebrow">How it's made</p>
+  <h2 class="section-title">Slow work,<br><em>honestly done.</em></h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Wedging</div>
+      <p class="step-body">Porcelain is kneaded until air is gone and the clay becomes elastic, responsive, ready. This takes longer than you'd think.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Forming</div>
+      <p class="step-body">No wheel. Pieces are hand-built — folded, pinched, coiled. The process invites drift. That drift is the point.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Refining</div>
+      <p class="step-body">Hours of slow attention. Walls thinned, edges smoothed, curves questioned. A piece might be abandoned. Most aren't.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Firing</div>
+      <p class="step-body">Bisque, then glaze fire — or none at all. Unglazed porcelain has a softness that speaks better than surface.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <p class="section-eyebrow">Recent work</p>
+  <h2 class="section-title">From the <em>studio</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-item-inner">Add large image</div>
+    </div>
+    <div class="gallery-item"><div class="gallery-item-inner">Add image</div></div>
+    <div class="gallery-item"><div class="gallery-item-inner">Add image</div></div>
+    <div class="gallery-item"><div class="gallery-item-inner">Add image</div></div>
+    <div class="gallery-item"><div class="gallery-item-inner">Add image</div></div>
+  </div>
+  <div style="text-align: center; margin-top: 3rem;">
+    <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="btn-outline">Follow on Instagram</a>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <p class="section-eyebrow">Get in touch</p>
+    <h2 class="section-title">Commission,<br><em>question,</em><br>or just hello.</h2>
+    <div class="contact-info" style="margin-top: 2.5rem;">
+      <p>The collection changes constantly. If you're looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="social-link">Instagram</a>
+        <a href="https://www.tiktok.com/@andrewsceramics" target="_blank" class="social-link">TikTok</a>
+        <a href="mailto:hello@andrewsceramics.com" class="social-link">hello@andrewsceramics.com</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form class="contact-form" onsubmit="handleContact(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Subject</label>
+        <select name="subject">
+          <option value="">Select…</option>
+          <option>Commission inquiry</option>
+          <option>Wholesale / stockist</option>
+          <option>Press or media</option>
+          <option>General question</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Send message</button>
+      </div>
+    </form>
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 0.5px solid var(--rule);">
+      <p style="font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); margin-bottom: 1rem;">Join the mailing list</p>
+      <form style="display: flex; gap: 0;" onsubmit="handleMailingList(event)">
+        <input type="email" placeholder="your@email.com" required style="flex: 1; background: none; border: 0.5px solid var(--rule); border-right: none; padding: 0.75rem 1rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 300; color: var(--charcoal); outline: none;">
+        <button type="submit" class="btn-primary" style="padding: 0.75rem 1.25rem; white-space: nowrap;">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">Andrew's Ceramics</a>
+  <p class="footer-copy">© 2026 Andrew's Ceramics. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#">Shipping & returns</a></li>
+  </ul>
+</footer>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">Your bag</span>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div id="cartContent">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">○</div>
+      <p>Your bag is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-price" id="cartTotal">$0</span>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;" onclick="handleCheckout()">Proceed to checkout</button>
+    <p class="cart-note">Shipping calculated at checkout.<br>Each piece is one of a kind and made to order.</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {
+    id: 1,
+    category: 'bowls',
+    name: 'Wavy Bowl No. 14',
+    desc: 'Unglazed white porcelain',
+    price: 185,
+    badge: null,
+    available: true,
+    image: null
+  },
+  {
+    id: 2,
+    category: 'bowls',
+    name: 'Wavy Bowl No. 17',
+    desc: 'Soft grey slip, matte finish',
+    price: 215,
+    badge: 'New',
+    available: true,
+    image: null
+  },
+  {
+    id: 3,
+    category: 'bowls',
+    name: 'Wavy Bowl No. 11',
+    desc: 'Bare porcelain, translucent walls',
+    price: 195,
+    badge: null,
+    available: false,
+    image: null
+  },
+  {
+    id: 4,
+    category: 'sculptures',
+    name: 'Lily Sculpture I',
+    desc: 'Hand-pulled petals, unglazed',
+    price: 320,
+    badge: null,
+    available: true,
+    image: null
+  },
+  {
+    id: 5,
+    category: 'sculptures',
+    name: 'Lily Sculpture II',
+    desc: 'Double bloom, satin white',
+    price: 395,
+    badge: 'New',
+    available: true,
+    image: null
+  },
+  {
+    id: 6,
+    category: 'chess',
+    name: 'Little Monster Chess Set',
+    desc: 'Hand-sculpted, 32 pieces',
+    price: 1200,
+    badge: 'Limited',
+    available: true,
+    image: null
+  },
+];
+
+let cart = [];
+let activeFilter = 'all';
+
+function filterProducts(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  const filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" data-id="${p.id}">
+      <div class="product-image">
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+        ${p.image
+          ? `<img src="${p.image}" alt="${p.name}">`
+          : `<div class="product-image-placeholder">Add photo</div>`}
+      </div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-desc">${p.desc}</div>
+      <div class="product-footer">
+        <span class="product-price">${p.available ? `$${p.price.toLocaleString()}` : '<span class="sold-out">Sold out</span>'}</span>
+        <button class="add-btn" ${!p.available ? 'disabled' : ''} onclick="addToCart(${p.id})">
+          ${p.available ? 'Add to bag' : 'Sold out'}
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  updateCart();
+  showToast(`${product.name} added to bag`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  updateCart();
+  renderCart();
+}
+
+function updateCart() {
+  const count = cart.reduce((sum, i) => sum + i.qty, 0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = count;
+  countEl.classList.toggle('visible', count > 0);
+}
+
+function renderCart() {
+  const content = document.getElementById('cartContent');
+  const footer = document.getElementById('cartFooter');
+
+  if (cart.length === 0) {
+    content.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">○</div><p>Your bag is empty</p></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+
+  const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  document.getElementById('cartTotal').textContent = `$${total.toLocaleString()}`;
+  footer.style.display = 'block';
+
+  content.innerHTML = `<div class="cart-items">${cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-img">
+        ${item.image ? `<img src="${item.image}" style="width:100%;height:100%;object-fit:cover;">` : ''}
+      </div>
+      <div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">$${item.price.toLocaleString()} × ${item.qty}</div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+    </div>
+  `).join('')}</div>`;
+}
+
+function openCart() {
+  renderCart();
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleCheckout() {
+  showToast('Connecting to checkout…');
+  closeCart();
+}
+
+function handleContact(e) {
+  e.preventDefault();
+  e.target.reset();
+  showToast('Message sent — thank you');
+}
+
+function handleMailingList(e) {
+  e.preventDefault();
+  e.target.reset();
+  showToast('You\'re on the list');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+renderProducts();
+</script>
+</body>
+</html>
