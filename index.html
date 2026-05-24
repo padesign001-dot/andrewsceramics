@@ -1115,17 +1115,17 @@
     <div class="process-step">
       <div class="step-num">02</div>
       <div class="step-title">Forming</div>
-      <p class="step-body">No wheel. Pieces are hand-built — folded, coerced, gently persuaded. The process invites drift. That drift is the point.</p>
+      <p class="step-body">No wheel. Pieces are hand-built — folded, pinched, coiled. The process invites drift. That drift is the point.</p>
     </div>
     <div class="process-step">
       <div class="step-num">03</div>
       <div class="step-title">Refining</div>
-      <p class="step-body">Hours of slow attention. Walls thinned, edges smoothed, curves questioned. A piece might break at this point,or be abandoned. It's up to the porcelain now.</p>
+      <p class="step-body">Hours of slow attention. Walls thinned, edges smoothed, curves questioned. A piece might be abandoned. Most aren't.</p>
     </div>
     <div class="process-step">
       <div class="step-num">04</div>
       <div class="step-title">Firing</div>
-      <p class="step-body">I prefer to just fire my bowls once, creating bisqueware. Porcelain has a softness that speaks better when it's unglazed.</p>
+      <p class="step-body">Bisque, then glaze fire — or none at all. Unglazed porcelain has a softness that speaks better than surface.</p>
     </div>
   </div>
 </section>
@@ -1362,24 +1362,18 @@ const CONTENT = {
   {
     id: 6,
     category: 'chess',
-    name: 'Little Monster Chess Set — White',
-    desc: 'Hand-sculpted, 32 pieces, white with black spots',
+    name: 'Little Monster Chess Set',
+    desc: 'Hand-sculpted porcelain, 32 pieces',
     price: 1200,
     badge: 'Limited',
     available: true,
     image: 'Chess_White.jpg',
-    gallery: ['Chess_White.jpg', 'Chess_White Black SpotsSpots.jpg'],
-  },
-  {
-    id: 7,
-    category: 'chess',
-    name: 'Little Monster Chess Set — Black',
-    desc: 'Hand-sculpted, 32 pieces, black with white spots',
-    price: 1200,
-    badge: 'Limited',
-    available: true,
-    image: 'Chess_Black.jpg',
-    gallery: ['Chess_Black.jpg', 'Chess_Black White Spots.jpg'],
+    gallery: [
+      { src: 'Chess_White.jpg',                  label: 'White' },
+      { src: 'Chess_White Black SpotsSpots.jpg',  label: 'White with Black Spots' },
+      { src: 'Chess_Black.jpg',                  label: 'Black' },
+      { src: 'Chess_Black White Spots.jpg',       label: 'Black with White Spots' },
+    ],
   },
   ], // end products
 
@@ -1446,8 +1440,8 @@ function renderProducts() {
       <div class="product-desc">${p.desc}</div>
       <div class="product-footer">
         <span class="product-price">${p.available ? `$${p.price.toLocaleString()}` : '<span class="sold-out">Sold out</span>'}</span>
-        <button class="add-btn" ${!p.available ? 'disabled' : ''} onclick="addToCart(${p.id})">
-          ${p.available ? 'Add to bag' : 'Sold out'}
+        <button class="add-btn" ${!p.available ? 'disabled' : ''} onclick="${p.gallery ? `openLightbox(${p.id})` : `addToCart(${p.id})`}">
+          ${p.gallery ? 'Choose set' : (p.available ? 'Add to bag' : 'Sold out')}
         </button>
       </div>
     </div>
@@ -1466,8 +1460,12 @@ function addToCart(id) {
   showToast(`${product.name} added to bag`);
 }
 
-function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
+function removeFromCart(id, variantId) {
+  if (variantId) {
+    cart = cart.filter(i => i.variantId !== variantId);
+  } else {
+    cart = cart.filter(i => i.id !== id);
+  }
   updateCart();
   renderCart();
 }
@@ -1502,7 +1500,7 @@ function renderCart() {
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-price">$${item.price.toLocaleString()} × ${item.qty}</div>
       </div>
-      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id}, '${item.variantId || ''}')">Remove</button>
     </div>
   `).join('')}</div>`;
 }
@@ -1551,20 +1549,59 @@ function openLightbox(id) {
   const main = document.getElementById('lightboxMain');
   const thumbs = document.getElementById('lightboxThumbs');
   const name = document.getElementById('lightboxName');
-  main.src = product.gallery[0];
+
+  const firstSrc = product.gallery[0].src || product.gallery[0];
+  const firstName = product.gallery[0].label || product.name;
+  main.src = firstSrc;
   main.alt = product.name;
-  name.textContent = product.name;
-  thumbs.innerHTML = product.gallery.map((src, i) => `
-    <img class="lightbox-thumb ${i === 0 ? 'active' : ''}" src="${src}" onclick="switchLightboxImage(this, '${src}')">`
-  ).join('');
+
+  // Render thumbs
+  thumbs.innerHTML = product.gallery.map((item, i) => {
+    const src = item.src || item;
+    const label = item.label || '';
+    return `<img class="lightbox-thumb ${i === 0 ? 'active' : ''}" src="${src}" title="${label}" onclick="switchLightboxImage(this, '${src}', '${label}', ${id})">`;
+  }).join('');
+
+  // Render name + add to bag for first variant
+  renderLightboxFooter(firstName, id, firstSrc);
+
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function switchLightboxImage(thumb, src) {
+function renderLightboxFooter(label, productId, variantSrc) {
+  const product = products.find(p => p.id === productId);
+  document.getElementById('lightboxName').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1rem;">
+      <div>
+        <div style="font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:300;">${product.name}</div>
+        <div style="font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--clay);margin-top:0.2rem;">${label}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <span style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);font-weight:300;">$${product.price.toLocaleString()}</span>
+        <button class="btn-primary" style="padding:0.7rem 1.5rem;" onclick="addVariantToCart(${productId}, '${label}', '${variantSrc}')">Add to bag</button>
+      </div>
+    </div>`;
+}
+
+function switchLightboxImage(thumb, src, label, productId) {
   document.getElementById('lightboxMain').src = src;
   document.querySelectorAll('.lightbox-thumb').forEach(t => t.classList.remove('active'));
   thumb.classList.add('active');
+  renderLightboxFooter(label, productId, src);
+}
+
+function addVariantToCart(productId, variantLabel, variantSrc) {
+  const product = products.find(p => p.id === productId);
+  const variantId = `${productId}-${variantLabel}`;
+  const existing = cart.find(i => i.variantId === variantId);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, name: `${product.name} — ${variantLabel}`, image: variantSrc, variantId, qty: 1 });
+  }
+  updateCart();
+  showToast(`${product.name} — ${variantLabel} added to bag`);
 }
 
 function closeLightbox(e) {
