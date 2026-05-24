@@ -919,6 +919,91 @@
     .product-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
   }
+
+  /* ── LIGHTBOX ── */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(42,37,32,0.92);
+    z-index: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 2rem;
+  }
+  .lightbox-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-inner {
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+  }
+  .lightbox-main {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+  .lightbox-thumbs {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .lightbox-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    border: 0.5px solid transparent;
+  }
+  .lightbox-thumb.active, .lightbox-thumb:hover {
+    opacity: 1;
+    border-color: var(--clay);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 1.75rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .lightbox-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+  .has-gallery {
+    cursor: zoom-in;
+  }
+  .has-gallery::after {
+    content: '⊕';
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.1rem;
+    color: var(--cream);
+    background: rgba(42,37,32,0.55);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
 </style>
 </head>
 <body>
@@ -1133,6 +1218,16 @@
   </ul>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img class="lightbox-main" id="lightboxMain" src="" alt="">
+    <div class="lightbox-thumbs" id="lightboxThumbs"></div>
+    <div class="lightbox-name" id="lightboxName"></div>
+  </div>
+</div>
+
 <!-- CART -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
@@ -1183,7 +1278,7 @@ const CONTENT = {
     headline: 'Made by hand.',
     headlineItalic: 'Left to decide.',
     paragraphs: [
-      'I make porcelain bowls and objects by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.',
+      'I make porcelain by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.',
       'Each piece takes 15–20 hours to coax into shape: forming, refining, firing, and simply waiting for the clay to settle into what it wants to be.',
       'The work happens at a community studio in Nashville. It\'s quiet, unhurried, and honest.',
     ],
@@ -1248,7 +1343,7 @@ const CONTENT = {
     id: 4,
     category: 'sculptures',
     name: 'Lily Sculpture I',
-    desc: 'Hand-pulled leaves, unglazed, with gloss glazed rough cast vase',
+    desc: 'Hand-pulled petals, unglazed',
     price: 320,
     badge: null,
     available: true,
@@ -1258,7 +1353,7 @@ const CONTENT = {
     id: 5,
     category: 'sculptures',
     name: 'Lily Sculpture II',
-    desc: 'Three lilies, unglazed, with gloss glazed rough cast vase',
+    desc: 'Double bloom, satin white',
     price: 395,
     badge: 'New',
     available: true,
@@ -1267,12 +1362,24 @@ const CONTENT = {
   {
     id: 6,
     category: 'chess',
-    name: 'Little Monster Chess Set',
-    desc: 'Hand-sculpted, 32 pieces',
+    name: 'Little Monster Chess Set — White',
+    desc: 'Hand-sculpted, 32 pieces, white with black spots',
     price: 1200,
     badge: 'Limited',
     available: true,
-    image: 'Chess_White.jpg'
+    image: 'Chess_White.jpg',
+    gallery: ['Chess_White.jpg', 'Chess_White Black SpotsSpots.jpg'],
+  },
+  {
+    id: 7,
+    category: 'chess',
+    name: 'Little Monster Chess Set — Black',
+    desc: 'Hand-sculpted, 32 pieces, black with white spots',
+    price: 1200,
+    badge: 'Limited',
+    available: true,
+    image: 'Chess_Black.jpg',
+    gallery: ['Chess_Black.jpg', 'Chess_Black White Spots.jpg'],
   },
   ], // end products
 
@@ -1329,7 +1436,7 @@ function renderProducts() {
   const filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
   grid.innerHTML = filtered.map(p => `
     <div class="product-card" data-id="${p.id}">
-      <div class="product-image">
+      <div class="product-image ${p.gallery ? 'has-gallery' : ''}" ${p.gallery ? `onclick="openLightbox(${p.id})"` : ''}>
         ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
         ${p.image
           ? `<img src="${p.image}" alt="${p.name}">`
@@ -1436,6 +1543,39 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
+
+function openLightbox(id) {
+  const product = products.find(p => p.id === id);
+  if (!product || !product.gallery) return;
+  const overlay = document.getElementById('lightboxOverlay');
+  const main = document.getElementById('lightboxMain');
+  const thumbs = document.getElementById('lightboxThumbs');
+  const name = document.getElementById('lightboxName');
+  main.src = product.gallery[0];
+  main.alt = product.name;
+  name.textContent = product.name;
+  thumbs.innerHTML = product.gallery.map((src, i) => `
+    <img class="lightbox-thumb ${i === 0 ? 'active' : ''}" src="${src}" onclick="switchLightboxImage(this, '${src}')">`
+  ).join('');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function switchLightboxImage(thumb, src) {
+  document.getElementById('lightboxMain').src = src;
+  document.querySelectorAll('.lightbox-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightboxOverlay') && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightboxOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightboxOverlay') });
+});
 
 renderProducts();
 </script>
