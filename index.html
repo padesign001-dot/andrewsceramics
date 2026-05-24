@@ -1160,7 +1160,65 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const products = [
+// ============================================================
+//  ✏️  SITE CONTENT — EDIT EVERYTHING HERE
+//  Changes you make in this section update the whole site.
+//  After editing, commit the file in GitHub to go live.
+// ============================================================
+
+const CONTENT = {
+
+  // ── HERO SECTION ─────────────────────────────────────────
+  hero: {
+    eyebrow:   'Handmade in Nashville',
+    headline:  'Porcelain with',
+    headlineItalic: 'nothing to prove.',
+    subtext:   'Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece shaped slowly, one hour at a time.',
+    image:     'Bowl_1.jpg',
+  },
+
+  // ── ABOUT SECTION ────────────────────────────────────────
+  about: {
+    eyebrow:  'Somewhere between control and collapse',
+    headline: 'Made by hand.',
+    headlineItalic: 'Left to decide.',
+    paragraphs: [
+      'I make porcelain by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.',
+      'Each piece takes 15–20 hours to coax into shape: forming, refining, firing, and simply waiting for the clay to settle into what it wants to be.',
+      'The work happens at a community studio in Nashville. It\'s quiet, unhurried, and honest.',
+    ],
+    stats: [
+      { number: '15–20', label: 'Hours per piece' },
+      { number: '3',     label: 'Collections' },
+      { number: '2 yrs', label: 'In the studio' },
+      { number: '1',     label: 'Maker' },
+    ],
+    image: 'Bowl_Detail_1.jpg',
+  },
+
+  // ── CONTACT & SOCIAL ─────────────────────────────────────
+  contact: {
+    intro: 'The collection changes constantly. If you\'re looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.',
+    email:     'hello@andrewsceramics.com',
+    instagram: 'https://www.instagram.com/philipandrewsceramics/',
+    tiktok:    'https://www.tiktok.com/@andrewsceramics',
+  },
+
+  // ── GALLERY IMAGES ───────────────────────────────────────
+  // First image is large (spans 2 columns). Add up to 5 total.
+  gallery: [
+    'Bowl_2.jpg',
+    'Bowl_Detail_2.jpg',
+    'Lily_2.jpg',
+    'Chess_White.jpg',
+    'Bowl_Detail_3.jpg',
+  ],
+
+  // ── PRODUCTS ─────────────────────────────────────────────
+  // category options: 'bowls' | 'sculptures' | 'chess'
+  // badge options:    'New' | 'Limited' | null
+  // available:        true = add to bag | false = sold out
+  products: [
   {
     id: 1,
     category: 'bowls',
@@ -1221,8 +1279,46 @@ const products = [
     available: true,
     image: 'Chess_White.jpg'
   },
-];
+  ], // end products
 
+}; // end CONTENT
+
+// ============================================================
+//  ⚙️  SITE ENGINE — no need to edit below this line
+// ============================================================
+
+// Apply hero content
+document.querySelector('.hero-eyebrow').textContent = CONTENT.hero.eyebrow;
+document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline + '<br><em>' + CONTENT.hero.headlineItalic + '</em>';
+document.querySelector('.hero-sub').textContent = CONTENT.hero.subtext;
+document.querySelector('.hero-image img').src = CONTENT.hero.image;
+
+// Apply about content
+document.querySelector('.about .section-eyebrow').textContent = CONTENT.about.eyebrow;
+document.querySelector('.about .section-title').innerHTML = CONTENT.about.headline + '<br><em>' + CONTENT.about.headlineItalic + '</em>';
+document.querySelector('.about-body').innerHTML = CONTENT.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+document.querySelector('.about-stat-grid').innerHTML = CONTENT.about.stats.map(s => `
+  <div class="about-stat">
+    <div class="about-stat-num">${s.number}</div>
+    <div class="about-stat-label">${s.label}</div>
+  </div>`).join('');
+document.querySelector('.about-image-block img').src = CONTENT.about.image;
+
+// Apply contact content
+document.querySelector('.contact-info p').textContent = CONTENT.contact.intro;
+const socialLinks = document.querySelectorAll('.social-link');
+socialLinks[0].href = CONTENT.contact.instagram;
+socialLinks[1].href = CONTENT.contact.tiktok;
+socialLinks[2].href = 'mailto:' + CONTENT.contact.email;
+socialLinks[2].textContent = CONTENT.contact.email;
+
+// Apply gallery
+const galleryItems = document.querySelectorAll('.gallery-item');
+CONTENT.gallery.forEach((src, i) => {
+  if (galleryItems[i]) galleryItems[i].querySelector('img').src = src;
+});
+
+const products = CONTENT.products;
 let cart = [];
 let activeFilter = 'all';
 
