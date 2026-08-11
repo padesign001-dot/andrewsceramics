@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Handmade porcelain ceramics — wavy bowls, lily sculptures, and Little Monster chess sets.">
+<meta name="description" content="Handbuilt porcelain ceramics — wavy bowls, lily sculptures, and Little Monster chess sets.">
 <meta property="og:title" content="Andrew's Ceramics">
 <meta property="og:description" content="Porcelain with nothing to prove.">
 <title>Andrew's Ceramics</title>
@@ -51,12 +51,16 @@
   }
 
   .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: var(--charcoal);
+  }
+
+  .nav-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
   }
 
   .nav-links {
@@ -668,7 +672,7 @@
      EDIT: Nav links → change text inside each li > a tag
 -->
 <nav>
-  <a class="nav-logo" href="#">Andrew's Ceramics</a>
+  <a class="nav-logo" href="#"><img src="logo.png" alt="Andrews Ceramics"></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#process">Process</a></li>
@@ -686,7 +690,7 @@
 -->
 <section class="hero">
   <div class="hero-text">
-    <p class="hero-eyebrow">Handmade in Nashville</p>
+    <p class="hero-eyebrow">No wheel. No molds.</p>
     <h1 class="hero-headline">Handbuilt in Nashville,<br><em>one bowl at a time.</em></h1>
     <p class="hero-sub">Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece is shaped slowly, one hour at a time.</p>
     <div class="hero-ctas">
@@ -694,7 +698,7 @@
     </div>
   </div>
   <div class="hero-image">
-    <img src="Bowl_1.jpg" alt="Handmade wavy porcelain bowl">
+    <img src="Bowl_1.jpg" alt="Handbuilt wavy porcelain bowl">
   </div>
 </section>
 
@@ -709,9 +713,9 @@
 <section class="about" id="about">
   <div>
     <p class="section-eyebrow">Somewhere between control and collapse</p>
-    <h2 class="section-title">Made by hand.<br><em>in Nashville.</em></h2>
+    <h2 class="section-title">Handbuilt.<br><em>Left to decide.</em></h2>
     <div class="about-body" style="margin-top: 2rem;">
-      <p>I make porcelain bowls by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.</p>
+      <p>I handbuild porcelain bowls — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.</p>
       <p>Each piece takes about 25 hours to coax into shape: forming, refining, and firing.</p>
       <p>The work happens at a community studio in Nashville.</p>
     </div>
@@ -877,7 +881,7 @@ const CONTENT = {
 
   // ── HERO SECTION ─────────────────────────────────────────
   hero: {
-    eyebrow:   'Handmade in Nashville',
+    eyebrow:   'No wheel. No molds.',
     headline:  'Handbuilt in Nashville,',
     headlineItalic: 'one bowl at a time.',
     subtext:   'Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece shaped slowly, one hour at a time.',
@@ -887,10 +891,10 @@ const CONTENT = {
   // ── ABOUT SECTION ────────────────────────────────────────
   about: {
     eyebrow:  'Somewhere between control and collapse',
-    headline: 'Made by hand.',
+    headline: 'Handbuilt.',
     headlineItalic: 'Left to decide.',
     paragraphs: [
-      'I make porcelain by hand — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.',
+      'I handbuild porcelain — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.',
       'Each piece takes 15–20 hours to coax into shape: form, refine, and fire.',
       'The work happens at a community studio in Nashville.',
     ],
