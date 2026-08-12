@@ -130,6 +130,17 @@
     color: var(--clay-dark);
   }
 
+  .hero-headline .quote-attr {
+    display: block;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.42em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-top: 0.5em;
+  }
+
   .hero-sub {
     font-size: 0.9rem;
     color: var(--mid);
@@ -687,7 +698,7 @@
 <section class="hero">
   <div class="hero-text">
     <p class="hero-eyebrow">No wheel. No molds.</p>
-    <h1 class="hero-headline">Handbuilt in<br>Nashville<br><em>one bowl at a time.</em></h1>
+    <h1 class="hero-headline">Nothing added.<br>Nothing missing.<br><em>&ldquo;Less, but better.&rdquo;<span class="quote-attr">&mdash;Dieter Rams</span></em></h1>
     <p class="hero-sub">Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece is shaped slowly, one hour at a time.</p>
     <div class="hero-ctas">
       <a href="#about" class="btn-outline">The work</a>
@@ -859,8 +870,8 @@ const CONTENT = {
   // ── HERO SECTION ─────────────────────────────────────────
   hero: {
     eyebrow:   'No wheel. No molds.',
-    headline:  'Handbuilt in<br>Nashville',
-    headlineItalic: 'one bowl at a time.',
+    headline:  'Nothing added.<br>Nothing missing.',
+    headlineItalic: '&ldquo;Less, but better.&rdquo;<span class="quote-attr">&mdash;Dieter Rams</span>',
     subtext:   'Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece shaped slowly, one hour at a time.',
     image:     'Bowl_1.jpg?v=2',
   },
