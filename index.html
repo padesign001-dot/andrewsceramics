@@ -3,38 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Handbuilt porcelain ceramics — wavy bowls, lily sculptures, and Little Monster chess sets.">
+<meta name="description" content="Handbuilt porcelain from a community studio in Nashville — bowls, sculptures, and chess sets, shaped by hand, one piece at a time.">
 <meta property="og:title" content="Andrew's Ceramics">
-<meta property="og:description" content="Porcelain with nothing to prove.">
+<meta property="og:description" content="No wheel. No molds. Handbuilt in Nashville.">
 <title>Andrew's Ceramics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #F7F3EE;
-    --warm-white: #FDFAF7;
+    --paper: #FBF7F1;
+    --paper-alt: #F2EADD;
+    --ink: #16130E;
+    --ink-soft: #4B443A;
+    --faint: #B6AA98;
     --clay: #C4A882;
-    --clay-dark: #9B7F5E;
-    --charcoal: #2A2520;
-    --mid: #6B6258;
-    --light: #B8AFA6;
-    --rule: rgba(42,37,32,0.12);
+    --clay-dark: #8C6C46;
+    --line: rgba(22,19,14,0.14);
+    --sans: 'Archivo', sans-serif;
     --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'Jost', sans-serif;
+    --bar-h: 52px;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--warm-white);
-    color: var(--charcoal);
+    background: var(--paper);
+    color: var(--ink);
     font-family: var(--sans);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.6;
     overflow-x: hidden;
+    padding-bottom: var(--bar-h);
   }
+
+  a { color: inherit; }
 
   /* ── NAV ── */
   nav {
@@ -44,237 +49,164 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 4rem;
-    background: rgba(253,250,247,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--rule);
+    padding: 1.5rem 3rem;
+    background: rgba(251,247,241,0.82);
+    backdrop-filter: blur(10px);
   }
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--charcoal);
-  }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 46px; width: auto; display: block; }
 
-  .nav-logo img {
-    height: 58px;
-    width: auto;
-    display: block;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; align-items: center; gap: 2.4rem; list-style: none; }
 
   .nav-links a {
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
     text-decoration: none;
-    color: var(--mid);
+    color: var(--ink-soft);
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--charcoal); }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── PILL BUTTON ── */
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: var(--paper);
+    background: var(--ink);
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .pill-btn:hover { background: var(--clay-dark); transform: translateY(-1px); }
+
+  .pill-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: var(--ink);
+    background: transparent;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.2s;
+  }
+  .pill-btn-outline:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ── EYEBROW / DISPLAY TYPE ── */
+  .eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 1.5rem;
+  }
+
+  .display {
+    font-family: var(--sans);
+    font-weight: 900;
+    text-transform: lowercase;
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .accent-line {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--clay-dark);
+  }
 
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 64px;
+    padding-top: 0;
   }
 
   .hero-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 6rem 4rem 6rem 4rem;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--light);
-    margin-bottom: 2rem;
+    padding: 8rem 4rem 6rem 4rem;
   }
 
   .hero-headline {
-    font-family: var(--serif);
-    font-size: clamp(3.5rem, 5vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-    margin-bottom: 2rem;
-    color: var(--charcoal);
+    font-size: clamp(3.4rem, 7.4vw, 6.6rem);
   }
-
-  .hero-headline em {
-    font-style: italic;
-    color: var(--clay-dark);
-  }
+  .hero-headline .accent-line { font-size: clamp(2rem, 4vw, 3.4rem); margin-top: 0.3rem; }
 
   .hero-sub {
-    font-size: 0.9rem;
-    color: var(--mid);
-    max-width: 380px;
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    max-width: 400px;
     line-height: 1.75;
-    margin-bottom: 3rem;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--warm-white);
-    background: var(--charcoal);
-    padding: 0.9rem 2.4rem;
-    border: none;
-    cursor: pointer;
-    font-family: var(--sans);
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover {
-    background: var(--clay-dark);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--charcoal);
-    background: transparent;
-    padding: 0.9rem 2.4rem;
-    border: 0.5px solid var(--charcoal);
-    cursor: pointer;
-    font-family: var(--sans);
-    transition: all 0.2s;
-  }
-
-  .btn-outline:hover {
-    background: var(--charcoal);
-    color: var(--warm-white);
-  }
-
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    margin: 2.25rem 0 2.75rem;
   }
 
   .hero-image {
-    background: var(--cream);
     position: relative;
     overflow: hidden;
-  }
-
-  .hero-image-placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    color: var(--light);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    background: var(--paper-alt);
   }
 
   .hero-image img {
     position: absolute;
-    top: -14%;
+    top: -12%;
     left: 0;
     width: 100%;
-    height: 128%;
+    height: 124%;
     object-fit: cover;
     will-change: transform;
   }
 
   /* ── SECTION COMMON ── */
-  section { padding: 7rem 4rem; }
+  section { padding: 8rem 4rem; }
 
-  .section-eyebrow {
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--light);
-    margin-bottom: 1.25rem;
-  }
+  .section-head { max-width: 760px; margin-bottom: 4rem; }
 
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 3vw, 3rem);
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--charcoal);
-  }
-
-  .section-title em { font-style: italic; color: var(--clay-dark); }
-
-  hr.rule {
-    border: none;
-    border-top: 0.5px solid var(--rule);
-    margin: 0;
-  }
+  hr.rule { border: none; border-top: 0.5px solid var(--line); margin: 0; }
 
   /* ── ABOUT ── */
   .about {
-    background: var(--cream);
+    background: var(--paper-alt);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 5rem;
     align-items: center;
   }
 
   .about-body {
-    font-size: 1rem;
+    font-size: 1.02rem;
     line-height: 1.85;
-    color: var(--mid);
+    color: var(--ink-soft);
+    max-width: 480px;
   }
 
   .about-body p + p { margin-top: 1.25rem; }
-
-  .about-stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .about-stat {
-    border-top: 0.5px solid var(--rule);
-    padding-top: 1.25rem;
-  }
-
-  .about-stat-num {
-    font-family: var(--serif);
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--charcoal);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .about-stat-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--light);
-  }
 
   .about-image-block {
     position: relative;
@@ -284,417 +216,289 @@
 
   .about-image-block img {
     position: absolute;
-    top: -14%;
+    top: -12%;
     left: 0;
     width: 100%;
-    height: 128%;
+    height: 124%;
     object-fit: cover;
     display: block;
     will-change: transform;
   }
 
-  .about-image-placeholder {
-    background: var(--warm-white);
-    aspect-ratio: 4/5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
   /* ── PROCESS ── */
-  .process {
-    background: var(--charcoal);
-    color: var(--cream);
-  }
-
-  .process .section-eyebrow { color: rgba(196,168,130,0.6); }
-  .process .section-title { color: var(--cream); }
-  .process .section-title em { color: var(--clay); }
+  .process { background: var(--ink); color: var(--paper); }
+  .process .eyebrow { color: rgba(196,168,130,0.65); }
+  .process .display { color: var(--paper); }
+  .process .accent-line { color: var(--clay); }
 
   .process-steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
 
-  .process-step {
-    border-top: 0.5px solid rgba(255,255,255,0.12);
-    padding-top: 2rem;
-  }
+  .process-step { border-top: 1px solid rgba(251,247,241,0.16); padding-top: 2rem; }
 
   .step-num {
-    font-family: var(--serif);
-    font-size: 3rem;
-    font-weight: 300;
-    color: rgba(196,168,130,0.3);
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 3.4rem;
+    color: rgba(251,247,241,0.22);
     line-height: 1;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .step-title {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 0.75rem;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.65rem;
+    text-transform: lowercase;
   }
 
-  .step-body {
-    font-size: 0.82rem;
-    color: rgba(196,168,130,0.7);
-    line-height: 1.75;
-  }
+  .step-body { font-size: 0.85rem; color: rgba(251,247,241,0.65); line-height: 1.75; }
 
   /* ── GALLERY ── */
-  .gallery { background: var(--cream); padding: 7rem 4rem; }
+  .gallery { background: var(--paper); }
 
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto;
     gap: 1rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
 
-  .gallery-item {
-    background: var(--warm-white);
-    overflow: hidden;
-  }
+  .gallery-item { background: var(--paper-alt); overflow: hidden; }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
 
-  .gallery-item:first-child {
-    grid-column: span 2;
-    grid-row: span 2;
-  }
-
-  .gallery-img-wrap {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1;
-  }
-
-  .gallery-item:first-child .gallery-img-wrap {
-    aspect-ratio: auto;
-    min-height: 400px;
-    height: 100%;
-  }
+  .gallery-img-wrap { position: relative; overflow: hidden; width: 100%; height: 100%; aspect-ratio: 1; }
+  .gallery-item:first-child .gallery-img-wrap { aspect-ratio: auto; min-height: 420px; height: 100%; }
 
   .gallery-img-wrap img {
     position: absolute;
-    top: -14%;
+    top: -12%;
     left: 0;
     width: 100%;
-    height: 128%;
+    height: 124%;
     object-fit: cover;
     display: block;
     will-change: transform;
   }
 
-  .gallery-item-inner {
-    aspect-ratio: 1;
-    background: var(--warm-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--light);
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    width: 100%;
-    height: 100%;
-  }
-
-  .gallery-item:first-child .gallery-item-inner {
-    aspect-ratio: auto;
-    min-height: 400px;
-  }
-
   /* ── CONTACT ── */
   .contact {
-    background: var(--warm-white);
+    background: var(--paper-alt);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 5rem;
     align-items: start;
   }
 
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    margin-top: 3rem;
+  .contact-info p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem; }
+
+  .social-links { display: flex; gap: 2rem; }
+  .social-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.2rem;
   }
 
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 
-  .form-field label {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--light);
-  }
-
-  .form-field input,
-  .form-field textarea,
-  .form-field select {
+  .contact-form input, .contact-form select, .contact-form textarea {
+    width: 100%;
     background: none;
     border: none;
-    border-bottom: 0.5px solid var(--rule);
-    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+    padding: 0.75rem 0;
     font-family: var(--sans);
-    font-size: 0.88rem;
-    font-weight: 300;
-    color: var(--charcoal);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--ink);
     outline: none;
     transition: border-color 0.2s;
-    width: 100%;
-    resize: none;
   }
 
-  .form-field input:focus,
-  .form-field textarea:focus,
-  .form-field select:focus {
-    border-bottom-color: var(--clay-dark);
-  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--faint); }
+  .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--ink); }
+  .contact-form textarea { resize: vertical; min-height: 100px; }
 
-  .form-field textarea { min-height: 100px; }
-
-  .contact-info {
-    padding-top: 1rem;
-  }
-
-  .contact-info p {
-    font-size: 0.88rem;
-    color: var(--mid);
-    line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .social-link {
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
+  .contact-form label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    text-decoration: none;
-    color: var(--mid);
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    color: var(--faint);
+    margin-bottom: 0.5rem;
+    display: block;
   }
 
-  .social-link::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 0.5px;
-    background: var(--rule);
-    transition: width 0.2s, background 0.2s;
-  }
-
-  .social-link:hover {
-    color: var(--charcoal);
-  }
-
-  .social-link:hover::before {
-    width: 32px;
-    background: var(--charcoal);
-  }
+  .mailing-list { margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+  .mailing-list p { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 1rem; letter-spacing: 0.02em; }
 
   /* ── FOOTER ── */
   footer {
     padding: 3rem 4rem;
-    border-top: 0.5px solid var(--rule);
+    border-top: 0.5px solid var(--line);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--warm-white);
+    background: var(--paper);
   }
 
-  .footer-logo {
-    font-family: var(--serif);
-    font-size: 0.95rem;
-    color: var(--charcoal);
-    text-decoration: none;
-  }
+  .footer-logo { display: flex; align-items: center; text-decoration: none; }
+  .footer-logo img { height: 30px; width: auto; }
 
-  .footer-copy {
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    color: var(--light);
-  }
+  .footer-copy { font-size: 0.72rem; color: var(--faint); }
 
-  .footer-links {
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.72rem; text-decoration: none; color: var(--faint); transition: color 0.2s; text-transform: lowercase; }
+  .footer-links a:hover { color: var(--ink); }
+
+  /* ── FIXED UTILITY BAR ── */
+  .util-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: var(--bar-h);
+    z-index: 90;
     display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: rgba(251,247,241,0.9);
+    backdrop-filter: blur(10px);
+    border-top: 0.5px solid var(--line);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    text-decoration: none;
-    color: var(--light);
-    transition: color 0.2s;
+    color: var(--faint);
   }
 
-  .footer-links a:hover { color: var(--charcoal); }
+  .util-tagline span { margin: 0 0.6em; opacity: 0.5; }
+
+  .util-scroll { display: flex; align-items: center; gap: 0.9rem; }
+
+  .util-track {
+    width: 140px;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .util-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--ink); }
+
+  .util-percent { min-width: 2.4em; text-align: right; color: var(--ink-soft); }
 
   /* ── TOAST ── */
   .toast {
     position: fixed;
-    bottom: 2rem;
+    bottom: calc(var(--bar-h) + 1.5rem);
     left: 50%;
-    transform: translateX(-50%) translateY(2rem);
-    background: var(--charcoal);
-    color: var(--cream);
+    transform: translateX(-50%) translateY(1rem);
+    background: var(--ink);
+    color: var(--paper);
     font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
     padding: 0.9rem 2rem;
+    border-radius: 999px;
     opacity: 0;
     transition: all 0.3s;
     z-index: 300;
     pointer-events: none;
     white-space: nowrap;
   }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+  /* ── REVEAL / SCROLL MOTION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
   }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .process-step:nth-child(1) { transition-delay: 0s; }
+  .process-step:nth-child(2) { transition-delay: 0.08s; }
+  .process-step:nth-child(3) { transition-delay: 0.16s; }
+  .process-step:nth-child(4) { transition-delay: 0.24s; }
 
-  .hero-text > * {
-    animation: fadeUp 0.8s ease both;
+  .gallery-item:nth-child(1) { transition-delay: 0s; }
+  .gallery-item:nth-child(2) { transition-delay: 0.08s; }
+  .gallery-item:nth-child(3) { transition-delay: 0.14s; }
+  .gallery-item:nth-child(4) { transition-delay: 0.2s; }
+  .gallery-item:nth-child(5) { transition-delay: 0.26s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-image img, .about-image-block img, .gallery-img-wrap img { transform: none !important; }
   }
-  .hero-eyebrow { animation-delay: 0.1s; }
-  .hero-headline { animation-delay: 0.2s; }
-  .hero-sub { animation-delay: 0.3s; }
-  .hero-ctas { animation-delay: 0.4s; }
 
   /* ── MOBILE ── */
   @media (max-width: 900px) {
     nav { padding: 1.25rem 1.5rem; }
     .nav-links { display: none; }
-    section { padding: 4rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
 
     .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-text { padding: 4rem 1.5rem 3rem; }
-    .hero-image { display: none; }
-
-    .hero-ctas { flex-direction: column; align-items: stretch; }
-    .hero-ctas a { width: 100%; text-align: center; }
+    .hero-text { padding: 7rem 1.5rem 3rem; }
+    .hero-image { min-height: 60vh; }
 
     .about, .contact { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-stat-grid { grid-template-columns: 1fr 1fr; }
-
     .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .gallery-grid { grid-template-columns: 1fr 1fr; }
     .gallery-item:first-child { grid-column: span 2; }
+    .form-row { grid-template-columns: 1fr; }
 
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+
+    .util-bar { padding: 0 1.25rem; }
+    .util-track { width: 70px; }
+    .util-tagline { display: none; }
   }
-
-  @media (max-width: 600px) {
-    .form-row { grid-template-columns: 1fr; }
-  }
-
-/* ── SCROLL MOTION (parallax + reveal) ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(38px);
-  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.process-step:nth-child(1) { transition-delay: 0s; }
-.process-step:nth-child(2) { transition-delay: 0.08s; }
-.process-step:nth-child(3) { transition-delay: 0.16s; }
-.process-step:nth-child(4) { transition-delay: 0.24s; }
-
-.gallery-item:nth-child(1) { transition-delay: 0s; }
-.gallery-item:nth-child(2) { transition-delay: 0.08s; }
-.gallery-item:nth-child(3) { transition-delay: 0.14s; }
-.gallery-item:nth-child(4) { transition-delay: 0.2s; }
-.gallery-item:nth-child(5) { transition-delay: 0.26s; }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .hero-image img, .about-image-block img, .gallery-img-wrap img {
-    transform: none !important;
-  }
-}
-
-@media (max-width: 860px) {
-  .hero-image img, .about-image-block img, .gallery-img-wrap img {
-    top: -8%;
-    height: 116%;
-  }
-}
 </style>
 </head>
 <body>
 
-<!-- NAV
-     EDIT: Site name → change 'Andrew's Ceramics' in the nav-logo tag
-     EDIT: Nav links → change text inside each li > a tag
--->
+<div class="util-bar">
+  <div class="util-tagline">handbuilt<span>·</span>unglazed<span>·</span>nashville</div>
+  <div class="util-scroll">
+    <span>scroll</span>
+    <div class="util-track"><div class="util-fill" id="scrollFill"></div></div>
+    <span class="util-percent" id="scrollPercent">0%</span>
+  </div>
+</div>
+
 <nav>
   <a class="nav-logo" href="#"><img src="logo.png?v=2" alt="Andrews Ceramics"></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">about</a></li>
+    <li><a href="#process">process</a></li>
+    <li><a href="#gallery">gallery</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
 
-<!-- HERO
-     EDIT: Eyebrow → p.hero-eyebrow text
-     EDIT: Headline → h1.hero-headline text
-     EDIT: Subheading → p.hero-sub text
-     EDIT: Hero image → change src='Bowl_1.jpg' to your new filename
-     EDIT: Button label → 'The work'
--->
 <section class="hero">
   <div class="hero-text">
-    <p class="hero-eyebrow">No wheel. No molds.</p>
-    <h1 class="hero-headline">Handbuilt in Nashville,<br><em>one bowl at a time.</em></h1>
+    <p class="eyebrow hero-eyebrow">No wheel. No molds.</p>
+    <h1 class="display hero-headline">
+      <span class="hero-headline-main">Handbuilt in<br>Nashville,</span>
+      <em class="accent-line">one bowl at a time.</em>
+    </h1>
     <p class="hero-sub">Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece is shaped slowly, one hour at a time.</p>
-    <div class="hero-ctas">
-      <a href="#about" class="btn-outline">The work</a>
+    <div>
+      <a href="#about" class="pill-btn">the work</a>
     </div>
   </div>
   <div class="hero-image">
@@ -702,40 +506,17 @@
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- ABOUT
-     EDIT: Eyebrow, headline → section-eyebrow and section-title
-     EDIT: Body copy → 3 paragraphs inside div.about-body
-     EDIT: Stats → numbers and labels in each div.about-stat
-     EDIT: Image → src='Bowl_Detail_1.jpg'
--->
 <section class="about" id="about">
   <div>
-    <p class="section-eyebrow">Somewhere between control and collapse</p>
-    <h2 class="section-title">Handbuilt.<br><em>Left to decide.</em></h2>
-    <div class="about-body" style="margin-top: 2rem;">
-      <p>I handbuild porcelain bowls — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.</p>
-      <p>Each piece takes about 25 hours to coax into shape: forming, refining, and firing.</p>
+    <p class="eyebrow">Somewhere between control and collapse</p>
+    <h2 class="display" style="font-size:clamp(2.4rem,4.4vw,3.8rem);">
+      <span class="about-headline-main">Handbuilt.</span>
+      <em class="accent-line" style="font-size:clamp(1.6rem,3vw,2.4rem);">Left to decide.</em>
+    </h2>
+    <div class="about-body" style="margin-top: 2.25rem;">
+      <p>I handbuild porcelain — folded, smoothed, and usually left unglazed. Forms drift, edges curl, walls lean. Nothing is quite symmetrical.</p>
+      <p>Each piece takes 15–20 hours to coax into shape: form, refine, and fire.</p>
       <p>The work happens at a community studio in Nashville.</p>
-    </div>
-    <div class="about-stat-grid">
-      <div class="about-stat">
-        <div class="about-stat-num">1</div>
-        <div class="about-stat-label"> About 25 hours per piece</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">3</div>
-        <div class="about-stat-label">Collections</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">2 yrs</div>
-        <div class="about-stat-label">In the studio</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">1</div>
-        <div class="about-stat-label">Maker</div>
-      </div>
     </div>
   </div>
   <div class="about-image-block">
@@ -743,154 +524,128 @@
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- PROCESS
-     EDIT: Headline → section-title
-     EDIT: Steps → each div.process-step has step-num, step-title, step-body
--->
 <section class="process" id="process">
-  <p class="section-eyebrow">How they're made</p>
-  <h2 class="section-title">It's a slow process<br><em>which for me, is the point.</em></h2>
+  <div class="section-head">
+    <p class="eyebrow">How they're made</p>
+    <h2 class="display" style="font-size:clamp(2.4rem,4.4vw,3.8rem);">It's a slow process<br><em class="accent-line" style="font-size:clamp(1.6rem,3vw,2.4rem);">which for me, is the point.</em></h2>
+  </div>
   <div class="process-steps">
     <div class="process-step">
       <div class="step-num">1</div>
-      <div class="step-title">Wedging</div>
+      <div class="step-title">wedging</div>
       <p class="step-body">Porcelain is wedged until all the bubbles are gone and the clay becomes elastic, responsive, and ready.</p>
     </div>
     <div class="process-step">
       <div class="step-num">2</div>
-      <div class="step-title">Forming</div>
+      <div class="step-title">forming</div>
       <p class="step-body">All the pieces are hand-formed, folded, and curved. The way the porcelain behaves is different every time.</p>
     </div>
     <div class="process-step">
       <div class="step-num">3</div>
-      <div class="step-title">Refining</div>
+      <div class="step-title">refining</div>
       <p class="step-body">Walls are smoothed and thinned, edges are softened. Some will break, some will be abandoned. The best ones make it into the kiln.</p>
     </div>
     <div class="process-step">
       <div class="step-num">4</div>
-      <div class="step-title">Firing</div>
+      <div class="step-title">firing</div>
       <p class="step-body">Typically I'll just bisque fire the bowls. Unglazed porcelain has a softness that doesn't need any embellishments.</p>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- GALLERY
-     EDIT: Images → change src filenames in div.gallery-grid
--->
 <section class="gallery" id="gallery">
-  <p class="section-eyebrow">Recent work</p>
-  <h2 class="section-title">From the <em>studio</em></h2>
+  <div class="section-head" style="margin-bottom:0;">
+    <p class="eyebrow">Recent work</p>
+    <h2 class="display" style="font-size:clamp(2.4rem,4.4vw,3.8rem);">From the <em class="accent-line" style="display:inline; font-size:1em;">studio</em></h2>
+  </div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <div class="gallery-img-wrap"><img src="Bowl_2.jpg" alt="Wavy porcelain bowl"></div>
-    </div>
+    <div class="gallery-item"><div class="gallery-img-wrap"><img src="Bowl_2.jpg" alt="Wavy porcelain bowl"></div></div>
     <div class="gallery-item"><div class="gallery-img-wrap"><img src="Bowl_Detail_2.jpg" alt="Bowl detail"></div></div>
     <div class="gallery-item"><div class="gallery-img-wrap"><img src="Lily_2.jpg" alt="Lily sculpture"></div></div>
     <div class="gallery-item"><div class="gallery-img-wrap"><img src="Chess_White.jpg" alt="Little Monster chess set"></div></div>
     <div class="gallery-item"><div class="gallery-img-wrap"><img src="Bowl_Detail_3.jpg" alt="Bowl detail"></div></div>
   </div>
-  <div style="text-align: center; margin-top: 3rem;">
-    <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="btn-outline">Follow on Instagram</a>
+  <div style="text-align: center; margin-top: 3.5rem;">
+    <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="pill-btn-outline">follow on instagram</a>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- CONTACT
-     EDIT: Instagram handle, email address, and copy text in this section
--->
 <section class="contact" id="contact">
-  <div>
-    <p class="section-eyebrow">Get in touch</p>
-    <h2 class="section-title">Commission,<br><em>question,</em><br>or just hello.</h2>
-    <div class="contact-info" style="margin-top: 2.5rem;">
-      <p>The collection changes constantly. If you're looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.</p>
-      <div class="social-links">
-        <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="social-link">Instagram</a>
-        <a href="https://www.tiktok.com/@andrewsceramics" target="_blank" class="social-link">TikTok</a>
-        <a href="mailto:hello@andrewsceramics.com" class="social-link">hello@andrewsceramics.com</a>
-      </div>
+  <div class="contact-info">
+    <p class="eyebrow">Get in touch</p>
+    <h2 class="display" style="font-size:clamp(2.4rem,4.4vw,3.8rem); margin-bottom:1.75rem;">Commission, <em class="accent-line" style="display:inline; font-size:1em;">question,</em> or just hello.</h2>
+    <p>The collection changes constantly. If you're looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.</p>
+    <div class="social-links">
+      <a class="social-link" href="#" target="_blank">instagram</a>
+      <a class="social-link" href="#" target="_blank">tiktok</a>
+      <a class="social-link" href="mailto:hello@andrewsceramics.com">hello@andrewsceramics.com</a>
     </div>
-  </div>
-  <div>
-    <form class="contact-form" onsubmit="handleContact(event)">
-      <div class="form-row">
-        <div class="form-field">
-          <label>Name</label>
-          <input type="text" name="name" required>
-        </div>
-        <div class="form-field">
-          <label>Email</label>
-          <input type="email" name="email" required>
-        </div>
-      </div>
-      <div class="form-field">
-        <label>Subject</label>
-        <select name="subject">
-          <option value="">Select…</option>
-          <option>Commission inquiry</option>
-          <option>Wholesale / stockist</option>
-          <option>Press or media</option>
-          <option>General question</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Message</label>
-        <textarea name="message" rows="5" required></textarea>
-      </div>
-      <div>
-        <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Send message</button>
-      </div>
-    </form>
 
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 0.5px solid var(--rule);">
-      <p style="font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); margin-bottom: 1rem;">Join the mailing list</p>
-      <form style="display: flex; gap: 0;" onsubmit="handleMailingList(event)">
-        <input type="email" placeholder="your@email.com" required style="flex: 1; background: none; border: 0.5px solid var(--rule); border-right: none; padding: 0.75rem 1rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 300; color: var(--charcoal); outline: none;">
-        <button type="submit" class="btn-primary" style="padding: 0.75rem 1.25rem; white-space: nowrap;">Subscribe</button>
+    <div class="mailing-list">
+      <p>Join the mailing list</p>
+      <form style="display:flex; gap:0.75rem; max-width:380px;" onsubmit="handleMailingList(event)">
+        <input type="email" placeholder="your@email.com" required style="flex:1;">
+        <button type="submit" class="pill-btn" style="padding:0.75rem 1.5rem;">subscribe</button>
       </form>
     </div>
   </div>
+
+  <form class="contact-form" onsubmit="handleContact(event)">
+    <div class="form-row">
+      <div>
+        <label for="cf-name">Name</label>
+        <input id="cf-name" type="text" placeholder="Your name" required>
+      </div>
+      <div>
+        <label for="cf-email">Email</label>
+        <input id="cf-email" type="email" placeholder="your@email.com" required>
+      </div>
+    </div>
+    <div>
+      <label for="cf-subject">Subject</label>
+      <select id="cf-subject" required>
+        <option value="">Select…</option>
+        <option>Commission inquiry</option>
+        <option>Wholesale / stockist</option>
+        <option>Press or media</option>
+        <option>General question</option>
+      </select>
+    </div>
+    <div>
+      <label for="cf-message">Message</label>
+      <textarea id="cf-message" placeholder="Tell me a bit about what you're looking for…" required></textarea>
+    </div>
+    <button type="submit" class="pill-btn" style="align-self:flex-start;">send message</button>
+  </form>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <a class="footer-logo" href="#">Andrew's Ceramics</a>
+  <a class="footer-logo" href="#"><img src="logo.png?v=2" alt="Andrews Ceramics"></a>
   <p class="footer-copy">© 2026 Andrew's Ceramics. All rights reserved.</p>
   <ul class="footer-links">
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#">Shipping & returns</a></li>
+    <li><a href="#contact">contact</a></li>
+    <li><a href="#">shipping &amp; returns</a></li>
   </ul>
 </footer>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
 // ============================================================
 //  ✏️  SITE CONTENT — EDIT EVERYTHING HERE
-//  Changes you make in this section update the whole site.
-//  After editing, commit the file in GitHub to go live.
 // ============================================================
 
 const CONTENT = {
-
-  // ── HERO SECTION ─────────────────────────────────────────
   hero: {
-    eyebrow:   'No wheel. No molds.',
-    headline:  'Handbuilt in Nashville,',
+    eyebrow: 'No wheel. No molds.',
+    headline: 'Handbuilt in<br>Nashville,',
     headlineItalic: 'one bowl at a time.',
-    subtext:   'Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece shaped slowly, one hour at a time.',
-    image:     'Bowl_1.jpg',
+    subtext: 'Wavy bowls, lily sculptures, and hand-sculpted chess sets — each piece is shaped slowly, one hour at a time.',
+    image: 'Bowl_1.jpg',
   },
 
-  // ── ABOUT SECTION ────────────────────────────────────────
   about: {
-    eyebrow:  'Somewhere between control and collapse',
+    eyebrow: 'Somewhere between control and collapse',
     headline: 'Handbuilt.',
     headlineItalic: 'Left to decide.',
     paragraphs: [
@@ -898,20 +653,16 @@ const CONTENT = {
       'Each piece takes 15–20 hours to coax into shape: form, refine, and fire.',
       'The work happens at a community studio in Nashville.',
     ],
-    stats: [],
     image: 'Bowl_Detail_1.jpg',
   },
 
-  // ── CONTACT & SOCIAL ─────────────────────────────────────
   contact: {
     intro: 'The collection changes constantly. If you\'re looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.',
-    email:     'hello@andrewsceramics.com',
+    email: 'hello@andrewsceramics.com',
     instagram: 'https://www.instagram.com/philipandrewsceramics/',
-    tiktok:    'https://www.tiktok.com/@andrewsceramics',
+    tiktok: 'https://www.tiktok.com/@andrewsceramics',
   },
 
-  // ── GALLERY IMAGES ───────────────────────────────────────
-  // First image is large (spans 2 columns). Add up to 5 total.
   gallery: [
     'Bowl_2.jpg',
     'Bowl_Detail_2.jpg',
@@ -919,39 +670,30 @@ const CONTENT = {
     'Chess_White.jpg',
     'Bowl_Detail_3.jpg',
   ],
-
-}; // end CONTENT
+};
 
 // ============================================================
 //  ⚙️  SITE ENGINE — no need to edit below this line
 // ============================================================
 
-// Apply hero content
 document.querySelector('.hero-eyebrow').textContent = CONTENT.hero.eyebrow;
-document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline + '<br><em>' + CONTENT.hero.headlineItalic + '</em>';
+document.querySelector('.hero-headline-main').innerHTML = CONTENT.hero.headline;
+document.querySelector('.hero-headline .accent-line').textContent = CONTENT.hero.headlineItalic;
 document.querySelector('.hero-sub').textContent = CONTENT.hero.subtext;
 document.querySelector('.hero-image img').src = CONTENT.hero.image;
 
-// Apply about content
-document.querySelector('.about .section-eyebrow').textContent = CONTENT.about.eyebrow;
-document.querySelector('.about .section-title').innerHTML = CONTENT.about.headline + '<br><em>' + CONTENT.about.headlineItalic + '</em>';
+document.querySelector('.about-headline-main').textContent = CONTENT.about.headline;
+document.querySelector('.about .accent-line').textContent = CONTENT.about.headlineItalic;
 document.querySelector('.about-body').innerHTML = CONTENT.about.paragraphs.map(p => `<p>${p}</p>`).join('');
-document.querySelector('.about-stat-grid').innerHTML = CONTENT.about.stats.map(s => `
-  <div class="about-stat">
-    <div class="about-stat-num">${s.number}</div>
-    <div class="about-stat-label">${s.label}</div>
-  </div>`).join('');
 document.querySelector('.about-image-block img').src = CONTENT.about.image;
 
-// Apply contact content
-document.querySelector('.contact-info p').textContent = CONTENT.contact.intro;
+document.querySelector('.contact-info p:not(.eyebrow)').textContent = CONTENT.contact.intro;
 const socialLinks = document.querySelectorAll('.social-link');
 socialLinks[0].href = CONTENT.contact.instagram;
 socialLinks[1].href = CONTENT.contact.tiktok;
 socialLinks[2].href = 'mailto:' + CONTENT.contact.email;
 socialLinks[2].textContent = CONTENT.contact.email;
 
-// Apply gallery
 const galleryItems = document.querySelectorAll('.gallery-item');
 CONTENT.gallery.forEach((src, i) => {
   if (galleryItems[i]) galleryItems[i].querySelector('img').src = src;
@@ -960,13 +702,13 @@ CONTENT.gallery.forEach((src, i) => {
 function handleContact(e) {
   e.preventDefault();
   e.target.reset();
-  showToast('Message sent — thank you');
+  showToast('message sent — thank you');
 }
 
 function handleMailingList(e) {
   e.preventDefault();
   e.target.reset();
-  showToast('You\'re on the list');
+  showToast('you\'re on the list');
 }
 
 function showToast(msg) {
@@ -977,51 +719,60 @@ function showToast(msg) {
 }
 
 // ============================================================
-//  🌊 SCROLL MOTION — parallax images + reveal-on-scroll
+//  🌊 SCROLL MOTION — parallax images, reveal-on-scroll, progress bar
 // ============================================================
 (function () {
   const reduceMotion = (typeof window.matchMedia === 'function') && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- Parallax images (hero, about, gallery) ----
+  // ---- Scroll progress bar ----
+  const fill = document.getElementById('scrollFill');
+  const percentEl = document.getElementById('scrollPercent');
+
+  // ---- Parallax images ----
+  let parallaxTargets = [];
   if (!reduceMotion) {
     const galleryImgs = Array.from(document.querySelectorAll('.gallery-img-wrap img'));
     const speeds = [0.10, -0.08, 0.12, -0.09, 0.08];
-
-    const parallaxTargets = [
-      { el: document.querySelector('.hero-image img'), speed: 0.16 },
+    parallaxTargets = [
+      { el: document.querySelector('.hero-image img'), speed: 0.14 },
       { el: document.querySelector('.about-image-block img'), speed: 0.13 },
       ...galleryImgs.map((el, i) => ({ el, speed: speeds[i % speeds.length] })),
     ].filter(t => t.el);
-
-    let ticking = false;
-    function updateParallax() {
-      const vh = window.innerHeight;
-      parallaxTargets.forEach(({ el, speed }) => {
-        const rect = el.parentElement.getBoundingClientRect();
-        if (rect.bottom < -200 || rect.top > vh + 200) return; // skip offscreen work
-        const center = rect.top + rect.height / 2;
-        const offset = (center - vh / 2) * speed;
-        el.style.transform = `translateY(${offset.toFixed(1)}px)`;
-      });
-      ticking = false;
-    }
-    function onScrollOrResize() {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    updateParallax();
   }
 
-  // ---- Reveal-on-scroll (fade + rise) for content blocks ----
+  let ticking = false;
+  function updateOnScroll() {
+    const vh = window.innerHeight;
+
+    parallaxTargets.forEach(({ el, speed }) => {
+      const rect = el.parentElement.getBoundingClientRect();
+      if (rect.bottom < -200 || rect.top > vh + 200) return;
+      const center = rect.top + rect.height / 2;
+      const offset = (center - vh / 2) * speed;
+      el.style.transform = `translateY(${offset.toFixed(1)}px)`;
+    });
+
+    if (fill && percentEl) {
+      const scrollable = document.documentElement.scrollHeight - vh;
+      const pct = scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0;
+      fill.style.width = pct.toFixed(0) + '%';
+      percentEl.textContent = pct.toFixed(0) + '%';
+    }
+    ticking = false;
+  }
+  function onScrollOrResize() {
+    if (!ticking) { requestAnimationFrame(updateOnScroll); ticking = true; }
+  }
+  window.addEventListener('scroll', onScrollOrResize, { passive: true });
+  window.addEventListener('resize', onScrollOrResize);
+  updateOnScroll();
+
+  // ---- Reveal-on-scroll ----
   const revealSelectors = [
-    '.about .section-eyebrow', '.about .section-title', '.about-body', '.about-stat-grid',
-    '.process .section-eyebrow', '.process .section-title', '.process-step',
-    '.gallery .section-eyebrow', '.gallery .section-title', '.gallery-item',
-    '.contact .section-eyebrow', '.contact .section-title', '.contact-info', '.contact-form',
+    '.about .eyebrow', '.about .display', '.about-body',
+    '.process .eyebrow', '.process .display', '.process-step',
+    '.gallery .eyebrow', '.gallery .display', '.gallery-item',
+    '.contact .eyebrow', '.contact .display', '.contact-info', '.contact-form',
   ];
   revealSelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.classList.add('reveal')));
 
