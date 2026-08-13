@@ -951,7 +951,9 @@ CONTENT.gallery.forEach((src, i) => {
   if (galleryItems[i]) galleryItems[i].querySelector('img').src = src;
 });
 
-function handleContact(e) {
+const WEB3FORMS_ACCESS_KEY = 'ae95291c-373e-440a-8a02-e9e173d66f75';
+
+async function handleContact(e) {
   e.preventDefault();
   const form = e.target;
   const data = new FormData(form);
@@ -959,17 +961,69 @@ function handleContact(e) {
   const email = (data.get('email') || '').trim();
   const subjectField = data.get('subject') || 'Website inquiry';
   const message = (data.get('message') || '').trim();
-  const body = `From: ${name} (${email})\n\n${message}`;
-  const mailto = `mailto:padesign001@gmail.com?subject=${encodeURIComponent(subjectField)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
-  form.reset();
-  showToast('Opening your email app to send this...');
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `Andrews Ceramics website — ${subjectField}`,
+        from_name: name,
+        name: name,
+        email: email,
+        message: message,
+      }),
+    });
+    const result = await res.json();
+    if (result.success) {
+      form.reset();
+      showToast('Message sent — thank you');
+    } else {
+      showToast('Something went wrong — please email hello@andrewsceramics.com directly');
+    }
+  } catch (err) {
+    showToast('Something went wrong — please email hello@andrewsceramics.com directly');
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+  }
 }
 
-function handleMailingList(e) {
+async function handleMailingList(e) {
   e.preventDefault();
-  e.target.reset();
-  showToast('You\'re on the list');
+  const form = e.target;
+  const emailInput = form.querySelector('input[type="email"]');
+  const email = (emailInput.value || '').trim();
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'New mailing list signup — Andrews Ceramics',
+        from_name: 'Website mailing list',
+        email: email,
+        message: `New subscriber: ${email}`,
+      }),
+    });
+    const result = await res.json();
+    if (result.success) {
+      form.reset();
+      showToast('You\'re on the list');
+    } else {
+      showToast('Something went wrong — please try again');
+    }
+  } catch (err) {
+    showToast('Something went wrong — please try again');
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+  }
 }
 
 function showToast(msg) {
