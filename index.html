@@ -705,7 +705,7 @@
 <section class="hero">
   <div class="hero-text">
     <p class="hero-eyebrow">No wheel. No molds.</p>
-    <h1 class="hero-headline">Nothing added.<br>Nothing missing.<br><em>&ldquo;Less, but better.&rdquo;<span class="quote-attr">&mdash;Dieter Rams</span></em></h1>
+    <h1 class="hero-headline">Nothing added.<br>Nothing missing.</h1>
     <p class="hero-sub">Wavy bowls and lily sculptures — each piece is shaped slowly, one hour at a time.</p>
     <div class="hero-ctas">
       <a href="#about" class="btn-outline">The work</a>
@@ -883,7 +883,6 @@ const CONTENT = {
   hero: {
     eyebrow:   'No wheel. No molds.',
     headline:  'Nothing added.<br>Nothing missing.',
-    headlineItalic: '&ldquo;Less, but better.&rdquo;<span class="quote-attr">&mdash;Dieter Rams</span>',
     subtext:   'Wavy bowls and lily sculptures — each piece shaped slowly, one hour at a time.',
     image:     'Bowl_1.jpg?v=3',
     imageAlt:  'Lily_3.jpg?v=3',
@@ -928,7 +927,7 @@ const CONTENT = {
 
 // Apply hero content
 document.querySelector('.hero-eyebrow').textContent = CONTENT.hero.eyebrow;
-document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline + '<br><em>' + CONTENT.hero.headlineItalic + '</em>';
+document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline;
 document.querySelector('.hero-sub').textContent = CONTENT.hero.subtext;
 document.querySelector('.hero-img-a').src = CONTENT.hero.image;
 document.querySelector('.hero-img-b').src = CONTENT.hero.imageAlt;
