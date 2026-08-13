@@ -232,9 +232,9 @@
   }
 
   .hero-image .hero-img-a { opacity: 1; }
-  .hero-image .hero-img-b { opacity: 0; object-position: 62% 40%; transition: opacity 4s ease-in-out, object-position 4s ease-in-out; }
+  .hero-image .hero-img-b { opacity: 0; object-position: 62% 18%; }
   .hero-image.is-crossfaded .hero-img-a { opacity: 0; }
-  .hero-image.is-crossfaded .hero-img-b { opacity: 1; object-position: 62% 26%; }
+  .hero-image.is-crossfaded .hero-img-b { opacity: 1; }
 
   /* ── SECTION COMMON ── */
   section { padding: 7rem 4rem; }
@@ -1078,8 +1078,22 @@ function showToast(msg) {
   // ---- Hero image slow dissolve (bowl ⇄ lily) ----
   if (!reduceMotion) {
     const heroImageBlock = document.querySelector('.hero-image');
-    if (heroImageBlock) {
+    const heroImgB = document.querySelector('.hero-img-b');
+    if (heroImageBlock && heroImgB) {
+      const restPos = '62% 18%';
+      const startPos = '62% 8%';
       setInterval(() => {
+        const enteringLily = !heroImageBlock.classList.contains('is-crossfaded');
+        if (enteringLily) {
+          // Prime a tighter crop instantly, then ease down to rest as it dissolves in.
+          heroImgB.style.transition = 'none';
+          heroImgB.style.objectPosition = startPos;
+          void heroImgB.offsetHeight;
+          heroImgB.style.transition = 'object-position 4s ease-in-out';
+          requestAnimationFrame(() => {
+            heroImgB.style.objectPosition = restPos;
+          });
+        }
         heroImageBlock.classList.toggle('is-crossfaded');
       }, 7000);
     }
