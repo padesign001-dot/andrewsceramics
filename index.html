@@ -227,8 +227,14 @@
     object-position: 68% 50%;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 32%, #000 50%);
     mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.55) 32%, #000 50%);
-    will-change: transform;
+    will-change: transform, opacity;
+    transition: opacity 4s ease-in-out;
   }
+
+  .hero-image .hero-img-a { opacity: 1; }
+  .hero-image .hero-img-b { opacity: 0; }
+  .hero-image.is-crossfaded .hero-img-a { opacity: 0; }
+  .hero-image.is-crossfaded .hero-img-b { opacity: 1; }
 
   /* ── SECTION COMMON ── */
   section { padding: 7rem 4rem; }
@@ -706,7 +712,8 @@
     </div>
   </div>
   <div class="hero-image">
-    <img src="Bowl_1.jpg?v=3" alt="Handbuilt wavy porcelain bowl">
+    <img class="hero-img-a" src="Bowl_1.jpg?v=3" alt="Handbuilt wavy porcelain bowl">
+    <img class="hero-img-b" src="Lily_3.jpg?v=1" alt="Handbuilt porcelain lily sculpture">
   </div>
 </section>
 
@@ -879,6 +886,7 @@ const CONTENT = {
     headlineItalic: '&ldquo;Less, but better.&rdquo;<span class="quote-attr">&mdash;Dieter Rams</span>',
     subtext:   'Wavy bowls and lily sculptures — each piece shaped slowly, one hour at a time.',
     image:     'Bowl_1.jpg?v=3',
+    imageAlt:  'Lily_3.jpg?v=1',
   },
 
   // ── ABOUT SECTION ────────────────────────────────────────
@@ -922,7 +930,8 @@ const CONTENT = {
 document.querySelector('.hero-eyebrow').textContent = CONTENT.hero.eyebrow;
 document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline + '<br><em>' + CONTENT.hero.headlineItalic + '</em>';
 document.querySelector('.hero-sub').textContent = CONTENT.hero.subtext;
-document.querySelector('.hero-image img').src = CONTENT.hero.image;
+document.querySelector('.hero-img-a').src = CONTENT.hero.image;
+document.querySelector('.hero-img-b').src = CONTENT.hero.imageAlt;
 
 // Apply about content
 document.querySelector('.about .section-eyebrow').textContent = CONTENT.about.eyebrow;
@@ -973,8 +982,10 @@ function showToast(msg) {
     const galleryImgs = Array.from(document.querySelectorAll('.gallery-img-wrap img'));
     const speeds = [0.10, -0.08, 0.12, -0.09, 0.08];
 
+    const heroImgs = Array.from(document.querySelectorAll('.hero-image img'));
+
     const parallaxTargets = [
-      { el: document.querySelector('.hero-image img'), speed: 0.16 },
+      ...heroImgs.map(el => ({ el, speed: 0.16 })),
       { el: document.querySelector('.about-image-block img'), speed: 0.13 },
       ...galleryImgs.map((el, i) => ({ el, speed: speeds[i % speeds.length] })),
     ].filter(t => t.el);
@@ -1000,6 +1011,16 @@ function showToast(msg) {
     window.addEventListener('scroll', onScrollOrResize, { passive: true });
     window.addEventListener('resize', onScrollOrResize);
     updateParallax();
+  }
+
+  // ---- Hero image slow dissolve (bowl ⇄ lily) ----
+  if (!reduceMotion) {
+    const heroImageBlock = document.querySelector('.hero-image');
+    if (heroImageBlock) {
+      setInterval(() => {
+        heroImageBlock.classList.toggle('is-crossfaded');
+      }, 7000);
+    }
   }
 
   // ---- Reveal-on-scroll (fade + rise) for content blocks ----
