@@ -805,7 +805,6 @@
       <p>The collection changes constantly. If you're looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.</p>
       <div class="social-links">
         <a href="https://www.instagram.com/philipandrewsceramics/" target="_blank" class="social-link">Instagram</a>
-        <a href="https://www.tiktok.com/@andrewsceramics" target="_blank" class="social-link">TikTok</a>
         <a href="mailto:hello@andrewsceramics.com" class="social-link">hello@andrewsceramics.com</a>
       </div>
     </div>
@@ -901,7 +900,6 @@ const CONTENT = {
     intro: 'The collection changes constantly. If you\'re looking for something specific — a gift, a commission, a particular form — reach out. Most things are possible with enough lead time.',
     email:     'hello@andrewsceramics.com',
     instagram: 'https://www.instagram.com/philipandrewsceramics/',
-    tiktok:    'https://www.tiktok.com/@andrewsceramics',
   },
 
   // ── GALLERY IMAGES ───────────────────────────────────────
@@ -936,9 +934,8 @@ document.querySelector('.about-image-block img').src = CONTENT.about.image;
 document.querySelector('.contact-info p').textContent = CONTENT.contact.intro;
 const socialLinks = document.querySelectorAll('.social-link');
 socialLinks[0].href = CONTENT.contact.instagram;
-socialLinks[1].href = CONTENT.contact.tiktok;
-socialLinks[2].href = 'mailto:' + CONTENT.contact.email;
-socialLinks[2].textContent = CONTENT.contact.email;
+socialLinks[1].href = 'mailto:' + CONTENT.contact.email;
+socialLinks[1].textContent = CONTENT.contact.email;
 
 // Apply gallery
 const galleryItems = document.querySelectorAll('.gallery-item');
