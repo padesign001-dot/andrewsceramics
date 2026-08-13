@@ -953,8 +953,17 @@ CONTENT.gallery.forEach((src, i) => {
 
 function handleContact(e) {
   e.preventDefault();
-  e.target.reset();
-  showToast('Message sent — thank you');
+  const form = e.target;
+  const data = new FormData(form);
+  const name = (data.get('name') || '').trim();
+  const email = (data.get('email') || '').trim();
+  const subjectField = data.get('subject') || 'Website inquiry';
+  const message = (data.get('message') || '').trim();
+  const body = `From: ${name} (${email})\n\n${message}`;
+  const mailto = `mailto:padesign001@gmail.com?subject=${encodeURIComponent(subjectField)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+  form.reset();
+  showToast('Opening your email app to send this...');
 }
 
 function handleMailingList(e) {
