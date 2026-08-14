@@ -616,9 +616,20 @@
     .nav-links { display: none; }
     section { padding: 4rem 1.5rem; }
 
-    .hero { min-height: auto; padding-top: 5.5rem; }
+    .hero { min-height: auto; padding-top: 5.5rem; flex-direction: column; align-items: stretch; }
     .hero-text { padding: 0 1.5rem; max-width: none; }
-    .hero-image { display: none; }
+    .hero-image {
+      display: block;
+      position: relative;
+      inset: auto;
+      height: 60vh;
+      min-height: 340px;
+      margin-top: 2.5rem;
+    }
+    .hero-image img {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
 
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas a { width: 100%; text-align: center; }
