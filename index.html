@@ -454,10 +454,10 @@
   }
 
   .form-field label {
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--light);
+    color: var(--mid);
   }
 
   .form-field input,
@@ -465,16 +465,22 @@
   .form-field select {
     background: none;
     border: none;
-    border-bottom: 0.5px solid var(--rule);
-    padding: 0.6rem 0;
+    border-bottom: 1.5px solid rgba(42,37,32,0.32);
+    padding: 0.7rem 0;
     font-family: var(--sans);
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 300;
     color: var(--charcoal);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, background-color 0.2s;
     width: 100%;
     resize: none;
+  }
+
+  .form-field input:hover,
+  .form-field textarea:hover,
+  .form-field select:hover {
+    border-bottom-color: rgba(42,37,32,0.5);
   }
 
   .form-field input:focus,
@@ -484,6 +490,23 @@
   }
 
   .form-field textarea { min-height: 100px; }
+
+  .form-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%232A2520' stroke-width='1.5'%3E%3Cpath d='M5 7.5L10 12.5L15 7.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    background-size: 0.9rem;
+    padding-right: 1.5rem;
+  }
+
+  .form-field select:invalid,
+  .form-field select option[value=""] {
+    color: var(--mid);
+  }
 
   .contact-info {
     padding-top: 1rem;
