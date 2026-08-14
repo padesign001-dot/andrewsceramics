@@ -1089,7 +1089,7 @@ function showToast(msg) {
           heroImgB.style.transition = 'none';
           heroImgB.style.objectPosition = startPos;
           void heroImgB.offsetHeight;
-          heroImgB.style.transition = 'object-position 4s ease-in-out';
+          heroImgB.style.transition = 'opacity 4s ease-in-out, object-position 4s ease-in-out';
           requestAnimationFrame(() => {
             heroImgB.style.objectPosition = restPos;
           });
