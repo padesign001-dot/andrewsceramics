@@ -738,7 +738,6 @@
 -->
 <section class="hero">
   <div class="hero-text">
-    <p class="hero-eyebrow">No wheel. No molds.</p>
     <h1 class="hero-headline">Nothing added.<br>Nothing missing.</h1>
     <p class="hero-sub">Wavy bowls and lily sculptures — each piece is shaped slowly, one hour at a time.</p>
     <div class="hero-ctas">
@@ -760,7 +759,6 @@
 -->
 <section class="about" id="about">
   <div>
-    <p class="section-eyebrow">Somewhere between control and collapse</p>
     <h2 class="section-title">Forty years as a graphic designer.<br><em>None of it prepares you for clay.</em></h2>
     <div class="about-body" style="margin-top: 2rem;">
       <p>I spent most of my career on a grid — control, precision, repeatability. Porcelain doesn&rsquo;t take instruction. It sags, it cracks, it moves after you&rsquo;ve already decided it&rsquo;s finished.</p>
@@ -954,14 +952,12 @@ const CONTENT = {
 // ============================================================
 
 // Apply hero content
-document.querySelector('.hero-eyebrow').textContent = CONTENT.hero.eyebrow;
 document.querySelector('.hero-headline').innerHTML = CONTENT.hero.headline;
 document.querySelector('.hero-sub').textContent = CONTENT.hero.subtext;
 document.querySelector('.hero-img-a').src = CONTENT.hero.image;
 document.querySelector('.hero-img-b').src = CONTENT.hero.imageAlt;
 
 // Apply about content
-document.querySelector('.about .section-eyebrow').textContent = CONTENT.about.eyebrow;
 document.querySelector('.about .section-title').innerHTML = CONTENT.about.headline + '<br><em>' + CONTENT.about.headlineItalic + '</em>';
 document.querySelector('.about-body').innerHTML = CONTENT.about.paragraphs.map(p => `<p>${p}</p>`).join('');
 document.querySelector('.about-image-block img').src = CONTENT.about.image;
